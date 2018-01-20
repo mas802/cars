@@ -3,14 +3,15 @@
 
 // https://bigdanzblog.wordpress.com/2014/08/10/attiny85-wake-from-sleep-on-pin-state-change-code-example/
 
-const int switchPin = 1;  // input switch 
+#define CUSTOM_RESET   PCINT3
+const int switchPin = 3;  // input switch 
 
-const int leds[] = { 3, 4 };       // flasher group 1
+const int leds[] = { 0, 2 };       // flasher group 1
 
-const int t = 25;          // duration of flash
-const int t2 = 7;         // duration of pause
-const int rep = 3;        // repetion within flash
-const int overall = 12;   // repetions until sleep
+const int t = 400;          // duration of flash
+const int t2 = 3;         // duration of pause
+const int rep = 1;        // repetion within flash
+const int overall = 17;   // repetions until sleep
 
 void setup() {
 
@@ -19,7 +20,7 @@ void setup() {
 
     for (int k = 0; k < 2; k++ ) {
         pinMode(leds[k], OUTPUT);
-//        // flashLed(leds[k]);
+          flashLed(leds[k]);
 //        // flashLedA(led2,led4);
 //        digitalWrite(leds[0], HIGH);
 ////        digitalWrite(leds[1], HIGH);
@@ -29,12 +30,13 @@ void setup() {
 ////        digitalWrite(leds[1], LOW);
 //        delay(5);
     } // for
+    
 } 
 
 void sleep() {
 
     GIMSK |= _BV(PCIE);                     // Enable Pin Change Interrupts
-    PCMSK |= _BV(PCINT1);                   // Use PB3 as interrupt pin
+    PCMSK |= _BV(CUSTOM_RESET);                   // Use PB3 as interrupt pin
     ADCSRA &= ~_BV(ADEN);                   // ADC off
     set_sleep_mode(SLEEP_MODE_PWR_DOWN);    // replaces above statement
 
@@ -43,7 +45,7 @@ void sleep() {
     sleep_cpu();                            // sleep
 
     cli();                                  // Disable interrupts
-    PCMSK &= ~_BV(PCINT1);                  // Turn off PB3 as interrupt pin
+    PCMSK &= ~_BV(CUSTOM_RESET);                  // Turn off PB3 as interrupt pin
     sleep_disable();                        // Clear SE bit
     ADCSRA |= _BV(ADEN);                    // ADC on
 
