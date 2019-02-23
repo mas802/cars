@@ -3,15 +3,15 @@
 
 // https://bigdanzblog.wordpress.com/2014/08/10/attiny85-wake-from-sleep-on-pin-state-change-code-example/
 
-#define CUSTOM_RESET   PCINT2
-const int switchPin = 2;  // input switch 
+#define CUSTOM_RESET   PCINT3
+const int switchPin = 3;  // input switch 
 
-const int leds[] = { 0, 1 };       // flasher group 1
+const int leds[] = { 0,1 };       // flasher group 1
 
 const int t = 50;          // duration of flash
-const int t2 = 19;         // duration of pause
-const int rep = 10;        // repetion within flash
-const int overall = 10;   // repetions until sleep
+const int t2 = 50;         // duration of pause
+const int rep = 1;        // repetion within flash
+const int overall = 50;   // repetions until sleep
 
 void setup() {
 
