@@ -20,7 +20,9 @@ https://bigdanzblog.wordpress.com/2014/08/10/attiny85-wake-from-sleep-on-pin-sta
 ## Majorette Australian Police FORD MUSTANG 80SS
 
 **Activation**: Back axle push button
+
 **Last upload commit**: 53f9534534f50c6f0c597de97e8285d0603caffe
+
 **Parts**
 - ATTiny85
 - Socket
@@ -29,12 +31,14 @@ https://bigdanzblog.wordpress.com/2014/08/10/attiny85-wake-from-sleep-on-pin-sta
 - Battery CR2032
 - Battery Holder
 
-[![Custom toy car with flashing emergency lights - Majorette FORD MUSTANG 80SS (no sound)](http://img.youtube.com/vi/mkkHSnG88MI/0.jpg)](http://www.youtube.com/watch?v=mkkHSnG88MI "Custom toy car with flashing emergency lights - Majorette FORD MUSTANG 80SS (no sound)")
+[![YOUTUBE: Custom toy car with flashing emergency lights - Majorette FORD MUSTANG 80SS (no sound)](http://img.youtube.com/vi/mkkHSnG88MI/0.jpg)](http://www.youtube.com/watch?v=mkkHSnG88MI "Custom toy car with flashing emergency lights - Majorette FORD MUSTANG 80SS (no sound)")
 
 ## Matchbox US Police PD-21 1987 FORD LTD
 
 **Activation**: Back axle push button
+
 **Last upload commit**: 1a653443bf139a3343ea5a63afeac6facd557727
+
 **Parts**
 - ATTiny85
 - Socket
