@@ -1,16 +1,14 @@
 #include <avr/sleep.h>
 
-// https://bigdanzblog.wordpress.com/2014/08/10/attiny85-wake-from-sleep-on-pin-state-change-code-example/
-
 #define CUSTOM_RESET PCINT3
 const int switchPin = 3;  // input switch 
 
-const int leds[] = { 0,1 };  // flasher group 1
+const int leds[] = { 0, 1};  // flasher group 1
 
-const int t = 50;          // duration of flash
-const int t2 = 50;         // duration of pause
-const int rep = 1;         // repetion within flash
-const int overall = 50;    // repetions until sleep
+const int durationOn  = 50;    // duration of flash
+const int durationOff = 50;    // duration of pause
+const int noFlashes   = 1;     // repetion within flash
+const int repetitions = 50;    // repetions until sleep
 
 void setup() {
     pinMode(switchPin, INPUT);
@@ -18,10 +16,10 @@ void setup() {
 
     for (int k = 0; k < 2; k++ ) {
         pinMode(leds[k], OUTPUT);
-        flashLed(leds[k]);
     }
 }
 
+// https://bigdanzblog.wordpress.com/2014/08/10/attiny85-wake-from-sleep-on-pin-state-change-code-example/
 void sleep() {
 
     GIMSK |= _BV(PCIE);                     // Enable Pin Change Interrupts
@@ -46,18 +44,18 @@ ISR(PCINT0_vect) {
 }
 
 void loop() {
-    sleep();                            // go to sleep at start of loop (and wait for interrupt)
-    for ( int j=0; j<overall; j++ ) {
+    for (int j=0; j<repetitions; j++) {
         flashLed(leds[0]);
         flashLed(leds[1]);
     }
+    sleep();
 }
 
-void flashLed(int l) {
-    for ( int i=0; i<rep; i++ ) {
-        digitalWrite(l, HIGH);
-        delay(t);
-        digitalWrite(l, LOW);
-        delay(t2);
+void flashLed(int led) {
+    for ( int i=0; i<noFlashes; i++ ) {
+        digitalWrite(led, HIGH);
+        delay(durationOn);
+        digitalWrite(led, LOW);
+        delay(durationOff);
     }
 }
