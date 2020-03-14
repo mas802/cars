@@ -3,18 +3,18 @@
 #define CUSTOM_RESET PCINT3
 const int switchPin = 3;  // input switch 
 
-const int leds[] = { 0, 1};  // flasher group 1
+const int leds[] = { 0, 1, 2, 4};  // flasher group 1
 
-const int durationOn  = 50;    // duration of flash
-const int durationOff = 50;    // duration of pause
+const int durationOn  = 100;   // duration of flash
+const int durationOff = 20;    // duration of pause
 const int noFlashes   = 1;     // repetion within flash
-const int repetitions = 50;    // repetions until sleep
+const int repetitions = 25;   // repetions until sleep
 
 void setup() {
     pinMode(switchPin, INPUT);
     digitalWrite(switchPin, HIGH);
 
-    for (int k = 0; k < 2; k++ ) {
+    for (int k = 0; k < 4; k++ ) {
         pinMode(leds[k], OUTPUT);
     }
 }
@@ -46,6 +46,12 @@ ISR(PCINT0_vect) {
 void loop() {
     for (int j=0; j<repetitions; j++) {
         flashLed(leds[0]);
+        flashLed(leds[0]);
+        flashLed(leds[1]);
+        flashLed(leds[2]);
+        flashLed(leds[3]);
+        flashLed(leds[3]);
+        flashLed(leds[2]);
         flashLed(leds[1]);
     }
     sleep();
